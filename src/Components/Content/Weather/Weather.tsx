@@ -8,8 +8,9 @@ import CloudIcon from "../../../icons/cloudy.svg"
 import RainIcon from "../../../icons/rain.svg"
 import NAIcon from "../../../icons/not-available.svg"
 
-import { DEFAULT_API_KEY, ICON_WIDTH, WeatherStyle } from "./constants"
+import { DEFAULT_API_KEY, ICON_WIDTH } from "./constants"
 import Message, { MessageType } from "../../Message"
+import { WeatherStyle } from "./interface"
 
 const Container = styled.div`
   display: flex;
