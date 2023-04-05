@@ -39,6 +39,7 @@ const Label = styled.label`
 
 const Input = styled.input`
   margin-left: 5px;
+  margin-bottom: 5px;
   width: 150px;
 `
 const Button = styled.button`
@@ -54,8 +55,8 @@ interface FormData {
 interface WeatherInfomation {
   desc?: string
   humidity?: number | string
-  temp_max?: number | string
-  temp_min?: number | string
+  tempMax?: number | string
+  tempMin?: number | string
   weather?: string
 }
 
@@ -83,14 +84,17 @@ const Weather = () => {
     const URL = `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&units=metric&APPID=${appId}`
     try {
       const {
-        data: { weather, main },
+        data: {
+          weather,
+          main: { temp_max, temp_min, humidity },
+        },
       } = await axios.get(URL)
       setInfo({
         weather: weather?.[0]?.main,
         desc: weather?.[0]?.description,
-        temp_max: main?.temp_max,
-        temp_min: main?.temp_min,
-        humidity: main?.humidity,
+        tempMax: temp_max,
+        tempMin: temp_min,
+        humidity,
       })
     } catch (error: any) {
       setInfo({})
@@ -117,10 +121,10 @@ const Weather = () => {
     }
   }
 
-  const { weather, desc, temp_max, temp_min, humidity } = info
+  const { weather, desc, tempMax, tempMin, humidity } = info
   return (
     <Container>
-      {error && <Message type={MessageType.Error} description={error} />}
+      {!!error && <Message type={MessageType.Error} description={error} />}
       <div>
         <Label>
           City:
@@ -165,9 +169,9 @@ const Weather = () => {
                 <div>{desc}</div>
               </Description>
             </div>
-            {temp_min && temp_max && (
+            {tempMin && tempMax && (
               <div>
-                Temperature: {temp_min}&#176;C~{temp_max}&#176;C
+                Temperature: {tempMin}&#176;C~{tempMax}&#176;C
               </div>
             )}
             {humidity && <div>Humidity: {humidity}%</div>}
