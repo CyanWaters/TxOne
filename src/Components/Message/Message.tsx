@@ -14,7 +14,7 @@ export enum MessageType {
 }
 
 const Container = styled.div`
-  padding: 5px 5px 5px 20px;
+  padding: 5px;
   font-size: 12px;
   font-family: Arial;
   margin-bottom: 5px;
@@ -31,7 +31,6 @@ interface IMessageProps {
 const Message: React.FC<IMessageProps> = ({ type, description = "" }) => {
   const [style, setStyle] = useState<any>({
     border: "1px solid",
-    backgroundColor: "",
   })
 
   useEffect(() => {

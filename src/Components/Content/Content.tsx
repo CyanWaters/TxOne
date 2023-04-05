@@ -33,7 +33,7 @@ const Content = () => {
       )}
       <div className="content">
         {activeTab === TabList.dataAnalysis && (
-          <DataAnalysis data={FAKE_DATA} />
+          <DataAnalysis title="Birth in Taiwan" data={FAKE_DATA} />
         )}
         {activeTab === TabList.todaysWeather && <Weather />}
       </div>
