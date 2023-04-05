@@ -1,8 +1,8 @@
-import { TITLE } from "../../constants"
+import { TabList } from "../../interface"
 
-export const TITLE_MAPPING_TABLE: Record<TITLE, string> = {
-  [TITLE.dataAnalysis]: "Data Analysis",
-  [TITLE.todaysWeather]: "Today's Weather",
+export const TAB_MAPPING_TABLE: Record<TabList, string> = {
+  [TabList.dataAnalysis]: "Data Analysis",
+  [TabList.todaysWeather]: "Today's Weather",
 }
 
 export const FAKE_DATA = {

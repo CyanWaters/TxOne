@@ -1,9 +1,9 @@
 import React, { useContext } from "react"
 import styled from "styled-components"
-import { TITLE } from "../../constants"
 
 import Context from "../../context"
-import { FAKE_DATA, TITLE_MAPPING_TABLE } from "./constants"
+import { TabList } from "../../interface"
+import { FAKE_DATA, TAB_MAPPING_TABLE } from "./constants"
 import DataAnalysis from "./DataAnalysis"
 import Weather from "./Weather"
 
@@ -28,12 +28,14 @@ const Content = () => {
 
   return (
     <Container>
-      {TITLE_MAPPING_TABLE[activeTab as TITLE] && (
-        <div className="title">{TITLE_MAPPING_TABLE[activeTab as TITLE]}</div>
+      {TAB_MAPPING_TABLE[activeTab as TabList] && (
+        <div className="title">{TAB_MAPPING_TABLE[activeTab as TabList]}</div>
       )}
       <div className="content">
-        {activeTab === TITLE.dataAnalysis && <DataAnalysis data={FAKE_DATA} />}
-        {activeTab === TITLE.todaysWeather && <Weather />}
+        {activeTab === TabList.dataAnalysis && (
+          <DataAnalysis data={FAKE_DATA} />
+        )}
+        {activeTab === TabList.todaysWeather && <Weather />}
       </div>
     </Container>
   )

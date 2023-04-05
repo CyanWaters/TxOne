@@ -3,8 +3,9 @@ import styled from "styled-components"
 
 import Content from "./Components/Content"
 import Tabs from "./Components/Tabs"
-import { TITLE } from "./constants"
+import { TAB_LIST } from "./constants"
 import Context from "./context"
+import { TabList } from "./interface"
 
 const Container = styled.div`
   display: flex;
@@ -18,15 +19,18 @@ const Container = styled.div`
 `
 
 const App = () => {
-  const [activeTab, setActiveTab] = useState<TITLE>()
+  const [activeTab, setActiveTab] = useState<TabList>()
 
   return (
     <Context.Provider
-      value={{ activeTab, setActiveTab: (value: TITLE) => setActiveTab(value) }}
+      value={{
+        activeTab,
+        setActiveTab: (value: TabList) => setActiveTab(value),
+      }}
     >
       <Container>
         <div className="menu-list">
-          <Tabs />
+          <Tabs tabs={TAB_LIST} />
         </div>
         <div className="menu-content">
           <Content />
