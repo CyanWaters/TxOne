@@ -14,7 +14,7 @@ const Container = styled.div`
   & div.title {
     height: 5vh;
     border-bottom: 1px solid #000000;
-    padding-bottom: 5px;
+    padding-bottom: 4px;
     font-size: 16px;
     font-family: Arial;
   }
