@@ -8,7 +8,7 @@ import CloudIcon from "../../../icons/cloudy.svg"
 import RainIcon from "../../../icons/rain.svg"
 import NAIcon from "../../../icons/not-available.svg"
 
-import { ICON_WIDTH, WeatherStyle } from "./constants"
+import { DEFAULT_API_KEY, ICON_WIDTH, WeatherStyle } from "./constants"
 import Message, { MessageType } from "../../Message"
 
 const Container = styled.div`
@@ -24,7 +24,6 @@ const Container = styled.div`
 const Description = styled.div`
   margin: 20px 0 0 20px;
   flex-grow: 1;
-  text-align: center;
   & :first-child {
     font-size: 36px;
     font-weigth: bold;
@@ -78,11 +77,9 @@ const Weather = () => {
     if (!formData) {
       return
     }
-    const { city, country, appId } = formData
+    const { city, country, appId = DEFAULT_API_KEY } = formData
     setLoading(true)
     setError(undefined)
-    // const URL = `http://api.openweathermap.org/data/2.5/weather?q=Taipei,TW&units=metric&APPID=66619455a9ccbf3287091db920f5a70c`
-
     const URL = `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&units=metric&APPID=${appId}`
     try {
       const {
@@ -149,10 +146,12 @@ const Weather = () => {
             onChange={handleOnChange("appId")}
           />
         </Label>
-        <Button onClick={handleSearch} disabled={!formData?.appId}>
+        <Button
+          onClick={handleSearch}
+          disabled={!formData?.city || !formData?.country}
+        >
           Search
         </Button>
-        <Button onClick={() => setFormData({})}>Clear</Button>
       </div>
       <div>
         {loading ? (
