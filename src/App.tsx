@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import styled from "styled-components"
 
-import "./App.css"
 import Content from "./Components/Content"
 import Tabs from "./Components/Tabs"
 import { TITLE } from "./constants"
